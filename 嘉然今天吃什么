@@ -1,0 +1,12 @@
+public class Eat
+{
+    enum Food
+    {
+        Java, python, 11212,OS;
+    }
+ 
+    public static void main(String[] args)
+    {
+        Food food = Food.OS;
+        System.out.println(Food);
+    }
