@@ -1,12 +1,19 @@
 <?php
 include("header.php");
 ?>
-<h1>Welcome to the home page</h1>
+<head>
+    <title>今天吃什么</title>
+</head>
+<h1>欢迎来到 <b>今天吃什么</b></h1>
 <form action="" method="post">
-    <input type="text" name="category" placeholder="category">
-    <input type="text" name="richness" placeholder="richness">
-    <input type="text" name="method" placeholder="method">
-    <button type="submit" name="submit" class="btn btn-success">Submit</button>
+    <input type="text" name="category" placeholder="类别">
+    <input type="text" name="richness" placeholder="价格">
+    <select>
+        <option value ="takeaway">外卖</option>
+        <option value ="eatin">堂食</option>
+        <option value="both">都有</option>
+    </select>
+    <button type="submit" name="submit" class="btn btn-success">开吃！</button>
 </form>
 <?php
 if (isset($_POST['submit'])) {
