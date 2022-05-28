@@ -31,3 +31,13 @@ function generate_restaurant($category,$richness,$method){
 function alert($message){
     echo "<script>alert('{$message}');</script>";
 }
+
+function php_self(){
+    return substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
+}
+
+function login($username,$password): bool
+{
+    global $Sys_config;
+    return $username==$Sys_config["admin_account"]&& $password==$Sys_config["admin_password"];
+}
