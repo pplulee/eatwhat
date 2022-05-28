@@ -1,9 +1,11 @@
 <?php
 include("header.php");
 ?>
+<html>
 <head>
     <title>今天吃什么</title>
 </head>
+<body>
 <div class="container">
     <h1>欢迎来到<p style="color:darkgreen;">今天吃什么<span class="badge bg-primary">内测版</span></p></h1>
     <form action="" method="post">
@@ -45,3 +47,8 @@ include("header.php");
     }
     ?>
 </div>
+<?php
+include("footer.php");
+?>
+</body>
+</html>

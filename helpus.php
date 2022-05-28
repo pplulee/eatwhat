@@ -1,3 +1,4 @@
+<div class="container">
 <?php
 include("header.php");
 $result = mysqli_query($conn, "SELECT DISTINCT `restaurant`.`id`, `restaurant`.`name` FROM `restaurant` WHERE `restaurant`.`id` NOT IN(SELECT `restaurant_id` FROM `restaurant_tagmap`) ORDER BY RAND() LIMIT 1");
@@ -41,3 +42,7 @@ echo "餐厅名称：" . $restaurant->name . "<br>";
     </div>
     <button type="submit" name="submit" class="btn btn-success">提交！</button>
 </form>
+</div>
+<?php
+include("footer.php");
+?>
