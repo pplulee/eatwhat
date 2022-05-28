@@ -4,7 +4,8 @@ include("header.php");
     <head>
         <title>今天吃什么</title>
     </head>
-    <h1>欢迎来到 <b>今天吃什么</b></h1>
+<div class="container">
+    <h1>欢迎来到<p style="color:darkgreen;">今天吃什么<span class="badge bg-primary">内测版</span></p></h1>
     <form action="" method="post">
         <select name="richness">
             <?php
@@ -37,3 +38,5 @@ if (isset($_POST['submit'])) {
     $restaurant = generate_restaurant((!isset($_POST['category'])) ? (array()) : $_POST['category'], $_POST['richness'], $_POST['method']);
     echo ($restaurant->id == 0) ? ("<h2>没有找到合适的餐厅</h2>") : ("<h2>今天吃{$restaurant->name}</h2>");
 }
+?>
+</div>
