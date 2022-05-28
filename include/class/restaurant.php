@@ -52,4 +52,17 @@ class restaurant
         global $conn;
         mysqli_query($conn, "UPDATE restaurant SET richness = '{$richness}' WHERE id = '{$this->id}';");
     }
+
+    function get_category($method)
+    {
+        global $conn;
+        $result = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '{$this->id}';");
+        $category = array();
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $category[] = get_category_name($row['category_id']);
+            }
+        }
+        return ($method=="array")?$category:implode(",", $category);
+    }
 }

@@ -45,3 +45,10 @@ function login($username, $password): bool
     global $Sys_config;
     return $username == $Sys_config["admin_account"] && $password == $Sys_config["admin_password"];
 }
+
+function get_category_name($id): string
+{
+    global $conn;
+    $result = mysqli_query($conn, "SELECT name FROM category WHERE id = '{$id}';");
+    return mysqli_fetch_assoc($result)['name'];
+}
