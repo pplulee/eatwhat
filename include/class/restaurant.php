@@ -32,4 +32,24 @@ class restaurant
             $this->id = 0;
         }
     }
+
+    function update_category($category)
+    {
+        global $conn;
+        foreach ($category as $cat) {
+            mysqli_query($conn, "INSERT INTO restaurant_tagmap (restaurant_id, category_id) VALUES ('{$this->id}', '{$cat}');");
+        }
+    }
+
+    function update_method($method)
+    {
+        global $conn;
+        mysqli_query($conn, "UPDATE restaurant SET method = '{$method}' WHERE id = '{$this->id}';");
+    }
+
+    function update_richness($richness)
+    {
+        global $conn;
+        mysqli_query($conn, "UPDATE restaurant SET richness = '{$richness}' WHERE id = '{$this->id}';");
+    }
 }
