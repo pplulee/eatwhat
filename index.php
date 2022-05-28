@@ -7,8 +7,6 @@ include("header.php");
 <div class="container">
     <h1>欢迎来到<p style="color:darkgreen;">今天吃什么<span class="badge bg-primary">内测版</span></p></h1>
     <form action="" method="post">
-        <div class="hstack gap-3">
-            <div class="bg-light border">
             <select class="btn btn-info dropdown-toggle" name="richness">
                 <?php
                 $result = mysqli_query($conn, "SELECT id,name FROM richness;");
@@ -19,24 +17,22 @@ include("header.php");
                 }
                 ?>
             </select>
-                </div>
-            <div class="bg-light border">
             <select class="btn btn-warning dropdown-toggle" name="method">
                 <option value="takeaway">外卖</option>
                 <option value="eatin">堂食</option>
                 <option value="both">都有</option>
             </select>
-                </div>
-        </div>
             </br>
+        <div class="form-check form-switch">
             <?php
             $result = mysqli_query($conn, "SELECT id,name FROM category;");
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "{$row['name']} <input type='checkbox' name='category[]' value='{$row['id']}'>";
+                    echo "{$row['name']} <input class='form-check-input' type='checkbox' role='switch' name='category[]' value='{$row['id']}'><br>";
                 }
             }
             ?>
+        </div>
             <button type="submit" name="submit" class="btn btn-success">开吃！</button>
     </form>
 <?php
