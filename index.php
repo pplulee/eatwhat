@@ -9,6 +9,7 @@ include("header.php");
     <form action="" method="post">
         <b>价格：</b>
         <select class="btn btn-info dropdown-toggle" name="richness">
+            <option value=''>随机</option><br>
             <?php
             $result = mysqli_query($conn, "SELECT id,name FROM richness;");
             if (mysqli_num_rows($result) > 0) {
