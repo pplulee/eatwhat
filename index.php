@@ -8,7 +8,7 @@ include("header.php");
 <form action="" method="post">
     <input type="text" name="category" placeholder="类别">
     <input type="text" name="richness" placeholder="价格">
-    <select>
+    <select name="method">
         <option value ="takeaway">外卖</option>
         <option value ="eatin">堂食</option>
         <option value="both">都有</option>
