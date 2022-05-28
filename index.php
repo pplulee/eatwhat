@@ -34,10 +34,6 @@ include("header.php");
     </form>
 <?php
 if (isset($_POST['submit'])) {
-    $restaurant = generate_restaurant($_POST['category'], $_POST['richness'], $_POST['method']);
-    if ($restaurant->id == 0) {
-        echo "<h2>没有找到合适的餐厅</h2>";
-    } else {
-        echo "<h2>今天吃{$restaurant->name}</h2>";
-    }
+    $restaurant = generate_restaurant((!isset($_POST['category'])) ? (array()) : $_POST['category'], $_POST['richness'], $_POST['method']);
+    echo ($restaurant->id == 0) ? ("<h2>没有找到合适的餐厅</h2>") : ("<h2>今天吃{$restaurant->name}</h2>");
 }

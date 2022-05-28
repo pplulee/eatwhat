@@ -14,11 +14,7 @@ function generate_restaurant($category, $richness, $method): restaurant
         $category_str = implode(",", $category);
         $category_sql = "rstmap.category_id IN ({$category_str})";
     }
-    if ($richness != "") {
-        $richness_sql = "rst.richness = '{$richness}'";
-    } else {
-        $richness_sql = "rst.richness LIKE '%'";
-    }
+    $richness_sql=($richness != "" ? "rst.richness = '{$richness}'" : "rst.richness LIKE '%'");
     switch ($method) {
         case "takeaway":
             $method_sql = "rst.method != 'eatin'";
@@ -31,12 +27,7 @@ function generate_restaurant($category, $richness, $method): restaurant
             break;
     }
     $result = mysqli_query($conn, "SELECT DISTINCT rst.id FROM restaurant AS rst JOIN restaurant_tagmap AS rstmap ON rst.id=rstmap.restaurant_id WHERE {$category_sql} AND {$richness_sql} AND {$method_sql} ORDER BY RAND() LIMIT 1;");
-    if (mysqli_num_rows($result) == 0) {
-        $id = 0;
-    } else {
-        $id = mysqli_fetch_assoc($result)['id'];
-    }
-    return new restaurant($id);
+    return new restaurant(mysqli_num_rows($result) == 0? 0 : mysqli_fetch_assoc($result)['id']);
 }
 
 function alert($message)
