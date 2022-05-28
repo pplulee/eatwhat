@@ -10,7 +10,9 @@ if ($Sys_config["debug"]) {
     error_reporting(E_ALL);
 }
 $conn = @mysqli_connect($Sys_config["db_host"], $Sys_config["db_user"], $Sys_config["db_password"], $Sys_config["db_database"]);  //Database connection
-
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 //Initialize CSS
 echo '<!DOCTYPE html>
 <html lang="en-GB">
