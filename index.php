@@ -7,6 +7,7 @@ include("header.php");
 <div class="container">
     <h1>欢迎来到<p style="color:darkgreen;">今天吃什么<span class="badge bg-primary">内测版</span></p></h1>
     <form action="" method="post">
+        <b>价格：</b>
             <select class="btn btn-info dropdown-toggle" name="richness">
                 <?php
                 $result = mysqli_query($conn, "SELECT id,name FROM richness;");
@@ -17,10 +18,11 @@ include("header.php");
                 }
                 ?>
             </select>
+        <b>类型：</b>
             <select class="btn btn-warning dropdown-toggle" name="method">
+                <option value="both">外卖堂食都行</option>
                 <option value="takeaway">外卖</option>
                 <option value="eatin">堂食</option>
-                <option value="both">都有</option>
             </select>
             </br>
         <div class="form-check form-switch">
