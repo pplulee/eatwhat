@@ -1,7 +1,7 @@
 <?php
 include("header.php");
-if (isset($_POST["submit"])){
-    if (login($_POST["username"], $_POST["password"])){
+if (isset($_POST["submit"])) {
+    if (login($_POST["username"], $_POST["password"])) {
         $_SESSION["isLogin"] = true;
         echo "<script>window.location.href='index.php';</script>";
     } else {

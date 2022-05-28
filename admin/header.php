@@ -3,11 +3,11 @@ include("../include/common.php");
 if (!isset($_SESSION)) {
     session_start();
 }
-if ((!$_SESSION['isLogin'])&&php_self()!="login.php") {
+if ((!$_SESSION['isLogin']) && php_self() != "login.php") {
     echo "<script>window.location.href='login.php';</script>"; // Redirect to login page
     exit;
 }
-if (php_self()!="login.php"&&$_SESSION['isLogin']){
+if (php_self() != "login.php" && $_SESSION['isLogin']) {
     echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Admin Panel</a>
