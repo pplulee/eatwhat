@@ -28,6 +28,7 @@ echo '<!DOCTYPE html>
             margin: 0;
             padding: 36px 0 42px;
             width: 100%;
+            height: 100px;
         }
 
         #footer div {
