@@ -27,7 +27,11 @@ if (php_self() != "login.php" && $_SESSION['isLogin']) {
                 <li class="nav-item">
                     <a class="nav-link" href="restaurant.php">餐厅管理</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="category_submit.php">提交分类</a>
+                </li>
             </ul>
+            <a href="login.php?logout" class="btn btn-danger">登出</a>
         </div>
     </div>
 </nav>';

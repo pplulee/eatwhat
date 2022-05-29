@@ -1,5 +1,10 @@
 <?php
 include("header.php");
+if (isset($_GET['logout'])) {
+    logout();
+    echo "<script>window.location.href='index.php';</script>";
+    exit();
+}
 if (isset($_POST["submit"])) {
     if (login($_POST["username"], $_POST["password"])) {
         $_SESSION["isLogin"] = true;

@@ -52,3 +52,10 @@ function get_category_name($id): string
     $result = mysqli_query($conn, "SELECT name FROM category WHERE id = '{$id}';");
     return mysqli_fetch_assoc($result)['name'];
 }
+
+function logout()
+{
+    session_destroy();
+    alert("登出成功");
+    echo "<script>setTimeout(\"javascript:location.href='index.php'\", 500);</script>";
+}

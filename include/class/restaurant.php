@@ -19,7 +19,6 @@ class restaurant
             $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM restaurant WHERE id = '{$id}';"));
             $this->name = $result['name'];
             $this->address = $result['address'];
-            $this->postcode = $result['postcode'];
             $this->richness = $result['richness'];
             $category = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '{$id}';");
             if (mysqli_num_rows($category) > 0) {
@@ -33,12 +32,28 @@ class restaurant
         }
     }
 
+    function update_name($name)
+    {
+        global $conn;
+        if ($this->id != 0) {
+            $this->name = $name;
+            mysqli_query($conn, "UPDATE restaurant SET name = '{$name}' WHERE id = '{$this->id}';");
+        }
+    }
+
     function update_category($category)
     {
         global $conn;
+        mysqli_query($conn, "DELETE FROM restaurant_tagmap WHERE restaurant_id = '{$this->id}';");
         foreach ($category as $cat) {
             mysqli_query($conn, "INSERT INTO restaurant_tagmap (restaurant_id, category_id) VALUES ('{$this->id}', '{$cat}');");
         }
+    }
+
+    function update_address($address)
+    {
+        global $conn;
+        mysqli_query($conn, "UPDATE restaurant SET address = '{$address}' WHERE id = '{$this->id}';");
     }
 
     function update_method($method)
@@ -64,5 +79,15 @@ class restaurant
             }
         }
         return ($method=="array")?$category:implode(",", $category);
+    }
+
+    function delete_restaurant()
+    {
+        global $conn;
+        if ($this->id != 0) {
+            mysqli_query($conn, "DELETE FROM restaurant WHERE id = '{$this->id}';");
+            mysqli_query($conn, "DELETE FROM restaurant_tagmap WHERE restaurant_id = '{$this->id}';");
+            $this->id = 0;
+        }
     }
 }
