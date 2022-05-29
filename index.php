@@ -20,6 +20,7 @@ include("header.php");
         ?> background-size: cover;
             background-repeat: no-repeat;
             z-index: -2;
+            margin-bottom: 110px;
         }
 
         body::before {
@@ -55,6 +56,7 @@ include("header.php");
                     }
                     ?>
                 </select>
+                <br>
                 <b>类型：</b>
                 <select class="btn btn-warning dropdown-toggle" name="method">
                     <option value="both" <?php echo (isset($_POST['submit']) && $_POST['method'] == 'both') ? "selected" : ""; ?>>
@@ -88,11 +90,13 @@ include("header.php");
             if (isset($_POST['submit'])) {
                 $restaurant = generate_restaurant((!isset($_POST['category'])) ? (array()) : $_POST['category'], $_POST['richness'], $_POST['method']);
                 $size = isMobile() ? 64 : 256;
-                echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
-                echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
                 if ($restaurant->id == 0) {
+                    echo "<img src='resource/fail.png' style='alignment: center' height='$size' width='$size'>";
+                    echo "<img src='resource/fail.png' style='alignment: center' height='$size' width='$size'>";
                     echo "<div class='alert alert-primary' role='alert' style='text-align: center'>没有找到合适的餐厅</div>";
                 } else {
+                    echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
+                    echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
                     echo "<div class='alert alert-primary' role='alert' style='text-align: center'>今天吃<br><b>{$restaurant->name}</b></div>";
                     echo $restaurant->richness == 5 ? "<div class='alert alert-success' role='alert' style='text-align: center'><b>狠狠消费！</b></div>" : "";
                 }
