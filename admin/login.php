@@ -14,8 +14,17 @@ if (isset($_POST["submit"])) {
     }
 }
 ?>
+<body>
+<div class="container" style="align-self: center; position: relative;">
 <form action="login.php" method="post">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="submit" name="submit" value="Login">
+    <h3 style="text-align: center">Username:<input type="text" name="username"></h3>
+    <br>
+    <h3 style="text-align: center">Password:<input type="password" name="password"></h3>
+    <br>
+    <div class="submit" style="position: absolute; left: 50%; right: 50%">
+        <input class="btn btn-success" type="submit" name="submit" value="Login">
+    </div>
 </form>
+</div>
+<?php include("../footer.php"); ?>
+</body>

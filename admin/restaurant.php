@@ -1,7 +1,10 @@
 <?php
 include("header.php");
 ?>
+<head>
 <title>餐厅管理</title>
+</head>
+<body>
 <div class="container" style="padding-top:70px;">
     <div class="col-md-15 center-block" style="float: none;">
         <div class="table-responsive">
@@ -39,5 +42,5 @@ include("header.php");
         </div>
     </div>
 </div>
-
-
+<?php include("../footer.php"); ?>
+</body>

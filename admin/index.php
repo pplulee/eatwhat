@@ -1,7 +1,10 @@
 <?php
 include("header.php");
 ?>
+<head>
 <title>Admin Panel</title>
+</head>
+<body>
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">Server Info</h3>
@@ -35,3 +38,5 @@ include("header.php");
         </li>
     </ul>
 </div>
+<?php include("../footer.php"); ?>
+</body>

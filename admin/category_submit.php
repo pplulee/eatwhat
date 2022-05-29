@@ -1,5 +1,10 @@
 <?php
 include("header.php");
+?>
+<head><title>提交餐厅</title></head>
+<body>
+<div class="container">
+<?php
 if (isset($_POST['submit'])){
     $restaurant = new restaurant($_POST['restaurant_id']);
     $restaurant->update_category($_POST['category']);
@@ -50,3 +55,6 @@ echo "餐厅名称：" . $restaurant->name . "<br>";
     </div>
     <button type="submit" name="submit" class="btn btn-success">提交！</button>
 </form>
+</div>
+<?php include("../footer.php"); ?>
+</body>
