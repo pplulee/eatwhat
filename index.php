@@ -4,6 +4,15 @@ include("header.php");
 <html>
 <head>
     <title>今天吃什么</title>
+    <link rel="manifest" href="manifest.json" />
+<!--    <script>-->
+<!--        if (navigator.serviceWorker != null) {-->
+<!--            navigator.serviceWorker.register('sw.js')-->
+<!--                .then(function(registration) {-->
+<!--                    console.log('Registered events at scope: ', registration.scope);-->
+<!--                });-->
+<!--        }-->
+<!--    </script>-->
 </head>
 <body>
 <div class="container">

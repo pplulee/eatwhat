@@ -40,7 +40,7 @@ echo '<!DOCTYPE html>
         #footer div p {
             color: #fff;
             float: left;
-            line-height: 44px;
+            line-height: 22px;
             margin: 0 0 0 10px;
             padding: 0;
         }
