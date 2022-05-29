@@ -26,7 +26,7 @@ function generate_restaurant($category, $richness, $method): restaurant
             $method_sql = "rst.method LIKE '%'";
             break;
     }
-    $result = mysqli_query($conn, "SELECT DISTINCT rst.id FROM restaurant AS rst JOIN restaurant_tagmap AS rstmap ON rst.id=rstmap.restaurant_id WHERE {$category_sql} AND {$richness_sql} AND {$method_sql} ORDER BY RAND() LIMIT 1;");
+    $result = mysqli_query($conn, "SELECT DISTINCT rst.id FROM restaurant AS rst JOIN restaurant_tagmap AS rstmap WHERE {$category_sql} AND {$richness_sql} AND {$method_sql} ORDER BY RAND() LIMIT 1;");
     return new restaurant(mysqli_num_rows($result) == 0? 0 : mysqli_fetch_assoc($result)['id']);
 }
 
