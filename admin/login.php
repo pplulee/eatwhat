@@ -16,6 +16,7 @@ if (isset($_POST["submit"])) {
 ?>
 <body>
 <div class="container" style="align-self: center; position: relative;">
+    <a href="../index.php" style="position: relative; left: 50%; right: 50%"><button type="button" class="btn btn-info">Go Back</button></a>
 <form action="login.php" method="post">
     <h3 style="text-align: center">Username:<input type="text" name="username"></h3>
     <br>
