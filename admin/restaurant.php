@@ -2,13 +2,15 @@
 include("header.php");
 ?>
 <head>
-<title>餐厅管理</title>
+    <title>餐厅管理</title>
 </head>
 <body>
 <div class="container" style="padding-top:70px;">
     <div class="col-md-15 center-block" style="float: none;">
         <div class="table-responsive">
-            <button type="submit" name="submit" class="btn btn-success" onclick="javascript:window.location.href='editrest.php?action=add'">新增一个餐厅</button>
+            <button type="submit" name="submit" class="btn btn-success"
+                    onclick="window.location.href='editrest.php?action=add'">新增一个餐厅
+            </button>
             <?php
             if (isset($_POST["submit"])) {
                 if ($_POST["restaurant_name"] == null) {

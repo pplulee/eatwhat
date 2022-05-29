@@ -9,13 +9,18 @@ if ($Sys_config["debug"]) {
     ini_set("display_errors", "On");
     error_reporting(E_ALL);
 }
-$conn = @mysqli_connect($Sys_config["db_host"], $Sys_config["db_user"], $Sys_config["db_password"], $Sys_config["db_database"]);  //Database connection
+$conn = @mysqli_connect($Sys_config["db_host"], $Sys_config["db_user"], $Sys_config["db_password"], $Sys_config["db_database"]);  //数据库连接
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("数据库连接失败：" . mysqli_connect_error());
 }
+
+if (!isset($_COOKIE['roll_limit'])){
+    setcookie("roll_limit","initial",time()+3600);
+}
+
 //Initialize CSS
 echo '<!DOCTYPE html>
-<html lang="en-GB">
+<html lang="zh-Hans">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <head>
-<title>Admin Panel</title>
+    <title>Admin Panel</title>
 </head>
 <body>
 <div class="panel panel-info">

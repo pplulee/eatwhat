@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <head>
-<title>分类管理</title>
+    <title>分类管理</title>
 </head>
 <body>
 <div class="container" style="padding-top:70px;">
