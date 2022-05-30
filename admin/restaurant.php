@@ -5,7 +5,7 @@ include("header.php");
     <title>餐厅管理</title>
 </head>
 <body>
-<div class="container" style="padding-top:70px;">
+<div class="container" style="padding-top:70px; margin-bottom: 110px">
     <div class="col-md-15 center-block" style="float: none;">
         <div class="table-responsive">
             <button type="submit" name="submit" class="btn btn-success"

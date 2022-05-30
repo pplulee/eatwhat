@@ -5,7 +5,7 @@ include("header.php");
     <title>分类管理</title>
 </head>
 <body>
-<div class="container" style="padding-top:70px;">
+<div class="container" style="padding-top:70px; margin-bottom: 110px">
     <div class="col-md-10 center-block" style="float: none;">
         <div class="table-responsive">
             <form action="" method="post">
@@ -41,4 +41,7 @@ include("header.php");
         </div>
     </div>
 </div>
+<?php
+include("../footer.php");
+?>
 </body>
