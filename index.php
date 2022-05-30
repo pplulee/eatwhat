@@ -97,7 +97,8 @@ include("header.php");
                 } else {
                     echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
                     echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
-                    echo "<div class='alert alert-primary' role='alert' style='text-align: center'>今天吃<br><b>{$restaurant->name}</b></div>";
+                    in_array(18, (isset($_POST['category'])) ? $_POST['category'] : array())? $prompt = "喝": $prompt = "吃";
+                    echo "<div class='alert alert-primary' role='alert' style='text-align: center'>今天{$prompt}<br><b>{$restaurant->name}</b></div>";
                     echo $restaurant->richness == 5 ? "<div class='alert alert-success' role='alert' style='text-align: center'><b>狠狠消费！</b></div>" : "";
                 }
             }
