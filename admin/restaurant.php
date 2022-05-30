@@ -27,6 +27,7 @@ include("header.php");
                     <th scope="col">分类</th>
                     <th scope="col">消费等级</th>
                     <th scope="col">堂食/外卖</th>
+                    <th scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>

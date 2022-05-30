@@ -23,8 +23,9 @@ include("header.php");
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">类别ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">类别名</th>
+                    <th scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>

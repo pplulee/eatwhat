@@ -95,8 +95,13 @@ include("header.php");
                     echo "<img src='resource/fail.png' style='alignment: center' height='$size' width='$size'>";
                     echo "<div class='alert alert-primary' role='alert' style='text-align: center'>没有找到合适的餐厅</div>";
                 } else {
-                    echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
-                    echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
+                    if($restaurant->richness>=4){
+                        echo "<img src='resource/bgxl.png' style='alignment: center' height='$size' width='$size'>";
+                        echo "<img src='resource/bgxl.png' style='alignment: center' height='$size' width='$size'>";
+                    }else{
+                        echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
+                        echo "<img src='resource/icon.png' style='alignment: center' height='$size' width='$size'>";
+                    }
                     in_array(18, (isset($_POST['category'])) ? $_POST['category'] : array())? $prompt = "喝": $prompt = "吃";
                     echo "<div class='alert alert-primary' role='alert' style='text-align: center'>今天{$prompt}<br><b>{$restaurant->name}</b></div>";
                     echo $restaurant->richness == 5 ? "<div class='alert alert-success' role='alert' style='text-align: center'><b>狠狠消费！</b></div>" : "";

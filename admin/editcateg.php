@@ -28,6 +28,9 @@ switch ($_GET["action"]) {
         }
         $result = mysqli_fetch_assoc($result);
         echo "
+        <div class='container' style='margin-top: 2%; width: 60%'>
+        <div class='card border-dark'>
+        <h4 class='card-header bg-primary text-white text-center'>编辑类别</h4>
         <form action='' method='post'>
             <div class='row'>
                 <div class='col'>
@@ -40,7 +43,9 @@ switch ($_GET["action"]) {
                 </div>
             </div>
             <input type='submit' name='submit' class='btn btn-primary btn-block' value='Save'>
-        </form>";
+        </form>
+        </div>
+        </div>";
         break;
     default:
         echo '<div class="alert alert-danger" role="alert"><p>未知操作</p></div>';

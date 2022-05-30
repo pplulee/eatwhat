@@ -1,5 +1,5 @@
 /*
-SQLyog Community v13.1.8 (64 bit)
+SQLyog Community v13.1.9 (64 bit)
 MySQL - 5.7.37-log : Database - eatwhat
 *********************************************************************
 */
@@ -54,7 +54,7 @@ CREATE TABLE `restaurant` (
   `priority` tinyint(4) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `richness` (`richness`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 /*Data for the table `restaurant` */
 
@@ -127,7 +127,7 @@ insert  into `restaurant`(`id`,`name`,`address`,`richness`,`method`,`priority`) 
 (69,'Laros - Greek Street Food MCR','Unit D, Aldow Enterprise Park, Manchester',2,'both',0),
 (70,'Dixy Chicken','135 Oxford Rd, Manchester',2,'both',0),
 (71,'Zaytoni','127b Oxford Road, Manchester',2,'both',0),
-(72,'KFC','12a Oxford Road, Manchester',2,'takeaway',0),
+(72,'KFC','12a Oxford Road, Manchester',1,'takeaway',0),
 (73,'Monga Fried Chicken 艋舺雞排','61-63 Whitworth Street, Manchester',2,'both',0),
 (74,'Five Guys','Unit 4, university Green, Oxford Road, Manchester',2,'both',0),
 (75,'Pizza Hut','133 Oxford Rd, Manchester',3,'both',0),
@@ -146,7 +146,8 @@ insert  into `restaurant`(`id`,`name`,`address`,`richness`,`method`,`priority`) 
 (88,'A Nice Sip','FC13-14 Arndale Market, 49 High St, Manchester M4 3AH',2,'both',0),
 (89,'Bobo Tea MCR','105 Market St, Manchester M1 1NN',2,'both',0),
 (90,'Ai Tea Drinks 珍珠奶茶','26 Kirkgate, Huddersfield HD1 1QQ',2,'both',0),
-(91,'Croyaki Tea','Fennel St, Manchester M4 3TR',2,'both',0);
+(91,'Croyaki Tea','Fennel St, Manchester M4 3TR',2,'both',0),
+(93,'test','111',1,'both',0);
 
 /*Table structure for table `restaurant_tagmap` */
 
@@ -201,9 +202,6 @@ insert  into `restaurant_tagmap`(`restaurant_id`,`category_id`) values
 (39,4),
 (47,2),
 (56,7),
-(72,6),
-(72,8),
-(72,16),
 (7,1),
 (7,2),
 (6,1),
@@ -326,7 +324,13 @@ insert  into `restaurant_tagmap`(`restaurant_id`,`category_id`) values
 (2,6),
 (2,8),
 (2,15),
-(2,16);
+(2,16),
+(72,6),
+(72,8),
+(72,15),
+(72,16),
+(93,7),
+(93,8);
 
 /*Table structure for table `richness` */
 
