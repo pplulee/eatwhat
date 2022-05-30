@@ -2,10 +2,9 @@
 
 class restaurant
 {
-    var $id;
-    var $name;
-    var $address;
-    var $postcode;
+    var int $id;
+    var string $name;
+    var string $address;
     var $richness;
     var array $category= array();
     var $method;
@@ -17,8 +16,8 @@ class restaurant
         if (restaurant_exist($id)) {
             $this->id = $id;
             $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM restaurant WHERE id = '{$id}';"));
-            $this->name = $result['name'];
-            $this->address = $result['address'];
+            $this->name = htmlspecialchars_decode($result['name'],ENT_QUOTES);
+            $this->address = htmlspecialchars_decode($result['address'],ENT_QUOTES);
             $this->richness = $result['richness'];
             $category = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '{$id}';");
             if (mysqli_num_rows($category) > 0) {
@@ -37,6 +36,7 @@ class restaurant
         global $conn;
         if ($this->id != 0) {
             $this->name = $name;
+            $name = htmlspecialchars($name,ENT_QUOTES);
             mysqli_query($conn, "UPDATE restaurant SET name = '{$name}' WHERE id = '{$this->id}';");
         }
     }
@@ -53,6 +53,8 @@ class restaurant
     function update_address($address)
     {
         global $conn;
+        $this->address = $address;
+        $address=htmlspecialchars($address,ENT_QUOTES);
         mysqli_query($conn, "UPDATE restaurant SET address = '{$address}' WHERE id = '{$this->id}';");
     }
 

@@ -55,12 +55,12 @@ if (isset($_POST['submit'])) {
         <div class='col'>
             <label>名称</label><br>
             <input type='text' class='form-control' name='name'
-                   <?php if ($_GET['action'] == "edit") echo "value='$restaurant->name'"; ?>required>
+                   <?php if ($_GET['action'] == "edit") echo "value='{$restaurant->name}'"; ?>required>
         </div>
         <div class='col'>
             <label>地址</label><br>
             <input type='text' class='form-control' name='address'
-                   <?php if ($_GET['action'] == "edit") echo "value='$restaurant->address'"; ?>required>
+                   <?php if ($_GET['action'] == "edit") echo "value='{$restaurant->address}'"; ?>required>
         </div>
         <div class='col'>
             <label>分类</label><br>
@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
         echo "<input type='submit' class='btn btn-primary' name='submit' value='添加'>";
     } else {
         echo "<input type='hidden' name='action' value='edit'>";
-        echo "<input type='hidden' name='id' value='$restaurant->id'>";
+        echo "<input type='hidden' name='id' value='{$restaurant->id}'>";
         echo "<input type='submit' class='btn btn-primary' name='submit' value='保存'>";
     } ?>
 </form>

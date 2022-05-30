@@ -14,6 +14,8 @@ switch ($_GET["action"]) {
             exit;
         } else {
             mysqli_query($conn, "DELETE FROM category WHERE id='{$_GET['id']}'");
+            mysqli_query($conn, "DELETE FROM restaurant_tagmap WHERE category_id='{$_GET['id']}'");
+            alert("删除成功");
             echo "<script>setTimeout(\"javascript:location.href='category.php'\", 0);</script>";
         }
         break;
