@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 <body>
-<div class="container" style="align-self: center; position: relative;width: 20%;margin-top: 15%">
+<div class="container" style="align-self: center; position: relative;width: <?php echo ((isMobile())?"auto":"20%"); ?>;margin-top: 15%">
     <div class="card border-dark">
         <h4 class="card-header bg-primary text-white text-center">管理员登录</h4>
         <div class="card-body" style="margin:0 5% 5% 5%;">
@@ -30,7 +30,7 @@ if (isset($_POST["submit"])) {
                     <span class="input-group-text" id="password_input"><i class="bi bi-shield-lock-fill"></i>密码</span>
                     <input type="password" name="password" class="form-control" aria-describedby="password_input">
                 </div>
-                <a href='https://www.bilibili.com/video/BV1uT4y1P7CX'>查询密码</a>
+                <a href='https://admin.tian-shen.cyou/' target="_blank"><button type="button" class="btn btn-secondary btn-sm">查询密码</button></a>
                 <div class="submit">
                     <input style="margin-top: 10%;width:100%;float:left;" class="btn btn-success" type="submit" name="submit" value="登录">
                 </div>
