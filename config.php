@@ -10,6 +10,3 @@ $Sys_config["db_database"] = "eatwhat"; //数据库名称
 //管理员信息
 $Sys_config["admin_account"] = "admin"; //管理员账号
 $Sys_config["admin_password"] = "123456";   //管理员密码
-
-//抽取限制
-$Sys_config["roll_time_limit"] = 3600; //多少时间内只允许抽一次，单位秒。设置为0则不限制

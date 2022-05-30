@@ -19,20 +19,31 @@ function generate_restaurant($category, $richness, $method): restaurant
             $result = mysqli_query($conn, "SELECT id FROM restaurant WHERE richness='{$richness}' AND method='{$method}' ORDER BY RAND() LIMIT 1;"); //按消费等级和方法
         }
     } else {
-        $category_sql = "rstmap.category_id IN (" . implode(",", $category) . ")";
         switch ($method) {
             case "takeaway":
-                $method_sql = "rst.method != 'eatin'";
+                $method_sql = "method != 'eatin'";
                 break;
             case "eatin":
-                $method_sql = "rst.method != 'takeaway'";
+                $method_sql = "method != 'takeaway'";
                 break;
             default:
-                $method_sql = "rst.method LIKE '%'";
+                $method_sql = "method LIKE '%'";
                 break;
         }
-        $richness_sql = ($richness != "" ? "rst.richness = '{$richness}'" : "rst.richness LIKE '%'");
-        $result = mysqli_query($conn, "SELECT DISTINCT rst.id FROM restaurant AS rst JOIN restaurant_tagmap AS rstmap ON rst.id=rstmap.restaurant_id WHERE {$category_sql} AND {$richness_sql} AND {$method_sql} ORDER BY RAND() LIMIT 1;");//全选！
+        $richness_sql = ($richness != "" ? "richness = '{$richness}'" : "richness LIKE '%'");
+        $category_len = sizeof($category);
+        $category_str = implode(",", $category);
+        $rst_result = mysqli_query($conn, "SELECT restaurant_id FROM restaurant_tagmap WHERE category_id IN ({$category_str}) GROUP BY restaurant_id HAVING COUNT(*) = {$category_len};");
+        if (mysqli_num_rows($rst_result) == 0) {
+            //没有符合分类条件的餐厅
+            return new restaurant(0);
+        }else{
+            while($row = mysqli_fetch_assoc($rst_result)){
+                $rst_list[]=$row['restaurant_id'];
+            }
+            $rst_list = implode(",", $rst_list);
+            $result = mysqli_query($conn, "SELECT id FROM restaurant WHERE id IN ({$rst_list}) AND {$method_sql} AND {$richness_sql} ORDER BY RAND() LIMIT 1;");
+        }
     }
     return new restaurant(mysqli_num_rows($result) == 0 ? 0 : mysqli_fetch_assoc($result)['id']);
 }
