@@ -50,62 +50,69 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-<form action='' method='post'>
-    <div class='row'>
-        <div class='col'>
-            <label>名称</label><br>
-            <input type='text' class='form-control' name='name'
+<div class="container" style="margin-top: 2%;width: <?php echo (isMobile())?"auto":"30%"; ?>;">
+    <div class='card border-dark'>
+        <h4 class='card-header bg-primary text-white text-center'>编辑餐厅</h4>
+<form action='' method='post' style="margin: 20px;">
+    <div class="input-group mb-3">
+        <span class='input-group-text' id='name'>名称</span>
+        <input type='text' class='form-control' name='name'
                    <?php if ($_GET['action'] == "edit") echo "value='{$restaurant->name}'"; ?>required>
-        </div>
-        <div class='col'>
-            <label>地址</label><br>
-            <input type='text' class='form-control' name='address'
+    </div>
+    <div class="input-group mb-3">
+        <span class='input-group-text' id='address'>地址</span>
+        <input type='text' class='form-control' name='address'
                    <?php if ($_GET['action'] == "edit") echo "value='{$restaurant->address}'"; ?>required>
-        </div>
-        <div class='col'>
-            <label>分类</label><br>
-            <div class="form-check form-switch">
-                <?php
-                $result = mysqli_query($conn, "SELECT id,name FROM category;");
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $checked = "";
-                        if ($_GET['action'] == "edit") {
-                            if (in_array($row['id'], $restaurant->category)) $checked = "checked";
-                        }
-                        echo "{$row['name']} <input class='form-check-input' type='checkbox' role='switch' name='category[]' {$checked} value='{$row['id']}'><br>";
+    </div>
+    <div class="row">
+    <div class='btn-group' style="margin-bottom: 20px">
+        <span class='input-group-text' id='category'>分类</span>
+        <div class="form-check form-switch" style="width: 200px; margin-left: 20px">
+            <?php
+            $result = mysqli_query($conn, "SELECT id,name FROM category;");
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $checked = "";
+                    if ($_GET['action'] == "edit") {
+                        if (in_array($row['id'], $restaurant->category)) $checked = "checked";
                     }
+                    echo "{$row['name']} <input class='form-check-input' type='checkbox' role='switch' name='category[]' {$checked} value='{$row['id']}'><br>";
                 }
-                ?>
-            </div>
+            }
+            ?>
         </div>
-        <div class='col'>
-            <label>消费等级</label><br>
-            <select class="btn btn-info dropdown-toggle" name="richness" required>
-                <?php
-                $result = mysqli_query($conn, "SELECT id,name FROM richness;");
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<option value='{$row['id']}'>{$row['name']}</option><br>";
-                    }
+    </div>
+    <div class="row">
+    <div class='btn-group mb-3'>
+        <span class='input-group-text' id='richness'>消费等级</span>
+        <select class="btn btn-info dropdown-toggle" name="richness" style="margin-left: 20px" required>
+            <?php
+            $result = mysqli_query($conn, "SELECT id,name FROM richness;");
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='{$row['id']}'>{$row['name']}</option><br>";
                 }
-                ?>
-            </select>
-        </div>
-        <div class='col'>
-            <label>堂食/外卖</label><br>
-            <select class="btn btn-warning dropdown-toggle" name="method">
-                <option value="both" <?php if ($_GET['action'] == "edit" && $restaurant->method == "both") echo "selected" ?>>
-                    外卖堂食都行
-                </option>
-                <option value="takeaway" <?php if ($_GET['action'] == "edit" && $restaurant->method == "takeaway") echo "selected" ?>>
-                    外卖
-                </option>
-                <option value="eatin" <?php if ($_GET['action'] == "edit" && $restaurant->method == "eatin") echo "selected" ?>>
-                    堂食
-                </option>
-            </select>
-        </div>
+            }
+            ?>
+        </select>
+    </div>
+    </div>
+    <div class="row">
+    <div class='btn-group mb-3'>
+        <span class='input-group-text' id='method'>堂食/外卖</span>
+        <select class="btn btn-warning dropdown-toggle" style="margin-left: 20px" name="method">
+            <option value="both" <?php if ($_GET['action'] == "edit" && $restaurant->method == "both") echo "selected" ?>>
+                外卖堂食都行
+            </option>
+            <option value="takeaway" <?php if ($_GET['action'] == "edit" && $restaurant->method == "takeaway") echo "selected" ?>>
+                外卖
+            </option>
+            <option value="eatin" <?php if ($_GET['action'] == "edit" && $restaurant->method == "eatin") echo "selected" ?>>
+                堂食
+            </option>
+        </select>
+    </div>
+    </div>
     </div>
     <?php if ($_GET['action'] == "add") {
         echo "<input type='hidden' name='action' value='add'>";
@@ -116,3 +123,4 @@ if (isset($_POST['submit'])) {
         echo "<input type='submit' class='btn btn-primary' name='submit' value='保存'>";
     } ?>
 </form>
+</div>

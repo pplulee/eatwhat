@@ -27,22 +27,21 @@ switch ($_GET["action"]) {
             exit;
         }
         $result = mysqli_fetch_assoc($result);
+        $width = isMobile()? "auto" : "20%";
         echo "
-        <div class='container' style='margin-top: 2%; width: 60%'>
+        <div class='container' style='margin-top: 2%; width: {$width};'>
         <div class='card border-dark'>
         <h4 class='card-header bg-primary text-white text-center'>编辑类别</h4>
-        <form action='' method='post'>
-            <div class='row'>
-                <div class='col'>
-                    <label>ID</label><br>
+        <form action='' method='post' style='margin: 20px;'>
+            <div class='input-group mb-3'>
+                    <span class='input-group-text' id='id'>ID</span>
                     <input type='text' class='form-control' name='id' value='{$result['id']}' readonly>
-                </div>
-                <div class='col'>
-                    <label>名称</label><br>
-                    <input type='text' class='form-control' name='name' value='{$result['name']}' required>
-                </div>
             </div>
-            <input type='submit' name='submit' class='btn btn-primary btn-block' value='Save'>
+            <div class='input-group mb-3'>
+                    <span class='input-group-text' id='name'>名称</span>
+                    <input type='text' class='form-control' name='name' value='{$result['name']}' required>
+            </div>
+            <input type='submit' name='submit' class='btn btn-primary btn-block' value='保存'>
         </form>
         </div>
         </div>";
