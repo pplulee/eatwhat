@@ -54,7 +54,7 @@ switch ($_GET["action"]) {
 }
 
 if (isset($_POST["submit"])) {
-    mysqli_query($conn, "UPDATE category SET name='{$_POST['name']}' WHERE id='{$_GET['id']}';");
+    mysqli_query($conn, "UPDATE category SET name='".htmlspecialchars($_POST["name"])."' WHERE id='{$_GET['id']}';");
     echo "<div class='alert alert-success' role='alert'><p>修改成功，即将返回</p></div>";
     echo "<script>setTimeout(\"javascript:location.href='category.php'\", 1000);</script>";
     exit;
