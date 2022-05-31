@@ -90,7 +90,12 @@ if (isset($_POST['submit'])) {
             $result = mysqli_query($conn, "SELECT id,name FROM richness;");
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<option value='{$row['id']}'>{$row['name']}</option><br>";
+                    if ($_GET['action'] == "edit"&&$row['id']==$restaurant->richness) {
+                        echo "<option value='{$row['id']}' selected>{$row['name']}</option>";
+                    }
+                    else {
+                        echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                    }
                 }
             }
             ?>

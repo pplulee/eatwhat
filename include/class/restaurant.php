@@ -5,9 +5,9 @@ class restaurant
     var int $id;
     var string $name;
     var string $address;
-    var $richness;
+    var int $richness;
     var array $category= array();
-    var $method;
+    var string $method;
 
 
     function __construct($id)
@@ -16,8 +16,8 @@ class restaurant
         if (restaurant_exist($id)) {
             $this->id = $id;
             $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM restaurant WHERE id = '{$id}';"));
-            $this->name = htmlspecialchars_decode($result['name'],ENT_QUOTES);
-            $this->address = htmlspecialchars_decode($result['address'],ENT_QUOTES);
+            $this->name = $result['name'];
+            $this->address = $result['address'];
             $this->richness = $result['richness'];
             $category = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '{$id}';");
             if (mysqli_num_rows($category) > 0) {
