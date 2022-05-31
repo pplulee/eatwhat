@@ -1,11 +1,19 @@
 <?php
 include("header.php");
 
+if (isset($_POST["submit"])) {
+    mysqli_query($conn, "UPDATE category SET name='".htmlspecialchars($_POST["name"],ENT_QUOTES)."' WHERE id='{$_GET['id']}';");
+    echo "<div class='alert alert-success' role='alert'><p>修改成功，即将返回</p></div>";
+    echo "<script>setTimeout(\"javascript:location.href='category.php'\", 1000);</script>";
+    exit;
+}
+
 if (!isset($_GET["id"]) || !isset($_GET["action"])) {
     echo '<div class="alert alert-danger" role="alert"><p>参数错误</p></div>';
     echo "<script>setTimeout(\"javascript:location.href='category.php'\", 500);</script>";
     exit;
 }
+
 echo "<title>编辑类别</title>";
 switch ($_GET["action"]) {
     case "delete":
@@ -51,11 +59,4 @@ switch ($_GET["action"]) {
         echo "<script>setTimeout(\"javascript:location.href='category.php'\", 500);</script>";
         exit;
 
-}
-
-if (isset($_POST["submit"])) {
-    mysqli_query($conn, "UPDATE category SET name='".htmlspecialchars($_POST["name"])."' WHERE id='{$_GET['id']}';");
-    echo "<div class='alert alert-success' role='alert'><p>修改成功，即将返回</p></div>";
-    echo "<script>setTimeout(\"javascript:location.href='category.php'\", 1000);</script>";
-    exit;
 }

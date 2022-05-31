@@ -17,7 +17,7 @@ include("header.php");
                 if ($_POST["category_name"] == null) {
                     echo "<div class='alert alert-danger' role='alert'>类别不能为空！</div>";
                 } else {
-                    mysqli_query($conn, "INSERT INTO category (name) VALUES ('".htmlspecialchars($name=$_POST['category_name'])."');");
+                    mysqli_query($conn, "INSERT INTO category (name) VALUES ('".htmlspecialchars($name=$_POST['category_name'],ENT_QUOTES)."');");
                 }
             } ?>
             <table class="table table-striped">
