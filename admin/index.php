@@ -24,6 +24,9 @@ include("header.php");
                 <b>网页服务器:</b> <?php echo $_SERVER['SERVER_SOFTWARE'] ?>
             </li>
             <li class="list-group-item">
+                <b>服务器系统:</b><?php echo php_uname('a') ?>
+            </li>
+            <li class="list-group-item">
                 <b>最大运行时间:</b> <?php echo ini_get('max_execution_time') ?>s
             </li>
             <li class="list-group-item">
@@ -34,6 +37,9 @@ include("header.php");
             </li>
             <li class="list-group-item">
                 <b>现有餐厅数量:</b> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT id FROM restaurant;")); ?>
+            </li>
+            <li class="list-group-item">
+                <b>现有分类数量:</b> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT id FROM category;")); ?>
             </li>
         </ul>
     </div>
