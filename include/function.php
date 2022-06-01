@@ -8,29 +8,21 @@ function restaurant_exist($id): bool
 function generate_restaurant($category, $richness, $method): restaurant
 {
     global $conn;
+    switch ($method) {
+        case "takeaway":
+            $method_sql = "method != 'eatin'";
+            break;
+        case "eatin":
+            $method_sql = "method != 'takeaway'";
+            break;
+        default:
+            $method_sql = "method LIKE '%'";
+            break;
+    }
+    $richness_sql = ($richness != "" ? "richness = '{$richness}'" : "richness LIKE '%'");
     if (sizeof($category) == 0) {
-        if ($richness == "" && $method == "both") {
-            $result = mysqli_query($conn, "SELECT id FROM restaurant ORDER BY RAND() LIMIT 1;"); //全部随机
-        } elseif ($richness != "" && $method == "both") {
-            $result = mysqli_query($conn, "SELECT id FROM restaurant WHERE richness='{$richness}' ORDER BY RAND() LIMIT 1;"); //按消费等级
-        } elseif ($richness == "" && $method != "both") {
-            $result = mysqli_query($conn, "SELECT id FROM restaurant WHERE method='{$method}' ORDER BY RAND() LIMIT 1;"); //按方法
-        } else{
-            $result = mysqli_query($conn, "SELECT id FROM restaurant WHERE richness='{$richness}' AND method='{$method}' ORDER BY RAND() LIMIT 1;"); //按消费等级和方法
-        }
+        $result = mysqli_query($conn,"SELECT id FROM restaurant WHERE {$method_sql} AND {$richness_sql} ORDER BY RAND() LIMIT 1;");
     } else {
-        switch ($method) {
-            case "takeaway":
-                $method_sql = "method != 'eatin'";
-                break;
-            case "eatin":
-                $method_sql = "method != 'takeaway'";
-                break;
-            default:
-                $method_sql = "method LIKE '%'";
-                break;
-        }
-        $richness_sql = ($richness != "" ? "richness = '{$richness}'" : "richness LIKE '%'");
         $category_len = sizeof($category);
         $category_str = implode(",", $category);
         $rst_result = mysqli_query($conn, "SELECT restaurant_id FROM restaurant_tagmap WHERE category_id IN ({$category_str}) GROUP BY restaurant_id HAVING COUNT(*) = {$category_len};");
