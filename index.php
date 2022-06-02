@@ -39,7 +39,7 @@ include("header.php");
 <div class="container">
     <div class="row align-items-start">
         <div class="col">
-            <h1>欢迎来到<p style="color:darkgreen;">今天吃什么<span class="badge bg-primary">内测版</span></p></h1>
+            <h1>欢迎来到<p style="color:darkgreen;">今天吃什么<a href="https://www.icloud.com/shortcuts/cdce7bf4648d45b587a98fcff4790f5f"><span class="badge bg-primary">iOS捷径</span></a></p></h1>
             <form action="" method="post">
                 <b>价格：</b>
                 <select class="btn btn-info dropdown-toggle" name="richness">
