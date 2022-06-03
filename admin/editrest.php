@@ -3,7 +3,7 @@ include("header.php");
 if (isset($_POST['submit'])) {
     switch ($_POST['action']) {
         case "add":
-            mysqli_query($conn, "INSERT INTO restaurant (name,address,richness,method) values ('{$_POST['name']}','{$_POST['address']}','{$_POST['richness']}','{$_POST['method']}');");
+            mysqli_query($conn, "INSERT INTO restaurant (name,richness,method) values ('{$_POST['name']}','{$_POST['richness']}','{$_POST['method']}');");
             $max_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(id) as max_id FROM restaurant"))['max_id'];
             $restaurant = new restaurant($max_id);
             $restaurant->update_category($_POST['category']);
@@ -13,7 +13,6 @@ if (isset($_POST['submit'])) {
         case "edit":
             $restaurant = new restaurant($_POST['id']);
             $restaurant->update_name($_POST['name']);
-            $restaurant->update_address($_POST['address']);
             $restaurant->update_richness($_POST['richness']);
             $restaurant->update_method($_POST['method']);
             $restaurant->update_category($_POST['category']);
@@ -58,11 +57,6 @@ if (isset($_POST['submit'])) {
         <span class='input-group-text' id='name'>名称</span>
         <input type='text' class='form-control' name='name'
                    <?php if ($_GET['action'] == "edit") echo "value='{$restaurant->name}'"; ?>required>
-    </div>
-    <div class="input-group mb-3">
-        <span class='input-group-text' id='address'>地址</span>
-        <input type='text' class='form-control' name='address'
-                   <?php if ($_GET['action'] == "edit") echo "value='{$restaurant->address}'"; ?>required>
     </div>
     <div class="row">
     <div class='btn-group' style="margin-bottom: 20px">

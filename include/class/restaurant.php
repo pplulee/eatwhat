@@ -4,7 +4,6 @@ class restaurant
 {
     var int $id;
     var string $name;
-    var string $address;
     var int $richness;
     var array $category= array();
     var string $method;
@@ -17,7 +16,6 @@ class restaurant
             $this->id = $id;
             $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM restaurant WHERE id = '{$id}';"));
             $this->name = $result['name'];
-            $this->address = $result['address'];
             $this->richness = $result['richness'];
             $category = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '{$id}';");
             if (mysqli_num_rows($category) > 0) {
@@ -48,14 +46,6 @@ class restaurant
         foreach ($category as $cat) {
             mysqli_query($conn, "INSERT INTO restaurant_tagmap (restaurant_id, category_id) VALUES ('{$this->id}', '{$cat}');");
         }
-    }
-
-    function update_address($address)
-    {
-        global $conn;
-        $this->address = $address;
-        $address=htmlspecialchars($address,ENT_QUOTES);
-        mysqli_query($conn, "UPDATE restaurant SET address = '{$address}' WHERE id = '{$this->id}';");
     }
 
     function update_method($method)
