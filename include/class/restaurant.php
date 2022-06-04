@@ -93,7 +93,7 @@ class restaurant
     function get_recommend(): string
     {
         if ($this->recommend == null){
-            return "没有推荐捏~";
+            return "没有推荐菜品捏~";
         }else{
             return implode(",", $this->recommend);
         }
