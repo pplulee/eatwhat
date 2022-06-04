@@ -46,6 +46,21 @@ insert  into `category`(`id`,`name`) values
 (20,'烤肉'),
 (21,'非洲料理');
 
+/*Table structure for table `recommend` */
+
+DROP TABLE IF EXISTS `recommend`;
+
+CREATE TABLE `recommend` (
+  `restaurant_id` int(11) NOT NULL,
+  `recommend` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*Data for the table `recommend` */
+
+insert  into `recommend`(`restaurant_id`,`recommend`) values 
+(2,'Triple Cheese Burger'),
+(2,'麦旋风');
+
 /*Table structure for table `restaurant` */
 
 DROP TABLE IF EXISTS `restaurant`;
@@ -58,7 +73,7 @@ CREATE TABLE `restaurant` (
   `priority` tinyint(4) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `richness` (`richness`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 /*Data for the table `restaurant` */
 
@@ -152,7 +167,8 @@ insert  into `restaurant`(`id`,`name`,`richness`,`method`,`priority`) values
 (90,'Ai Tea Drinks 珍珠奶茶',2,'both',0),
 (91,'Croyaki Tea',2,'both',0),
 (95,'ETCI MEHMET | Turkish Steak & Burger House',4,'eatin',0),
-(96,'Hello Oriental',3,'eatin',0);
+(96,'Hello Oriental',3,'eatin',0),
+(97,'Shoryu拉面',3,'both',0);
 
 /*Table structure for table `restaurant_tagmap` */
 
@@ -308,10 +324,6 @@ insert  into `restaurant_tagmap`(`restaurant_id`,`category_id`) values
 (17,1),
 (17,2),
 (17,18),
-(2,6),
-(2,8),
-(2,15),
-(2,16),
 (72,6),
 (72,8),
 (72,15),
@@ -343,7 +355,13 @@ insert  into `restaurant_tagmap`(`restaurant_id`,`category_id`) values
 (1,3),
 (1,6),
 (1,20),
-(1,21);
+(1,21),
+(97,2),
+(97,4),
+(2,6),
+(2,8),
+(2,15),
+(2,16);
 
 /*Table structure for table `richness` */
 

@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
             $restaurant->update_richness($_POST['richness']);
             $restaurant->update_method($_POST['method']);
             $restaurant->update_category($_POST['category']);
+            $restaurant->update_recommend($_POST['recommend']);
             alert("修改成功");
             echo "<script>setTimeout(\"javascript:location.href='restaurant.php'\", 500);</script>";
             exit;
@@ -112,6 +113,12 @@ if (isset($_POST['submit'])) {
         </select>
     </div>
     </div>
+        <div class="row">
+            <div class='btn-group mb-3'>
+                <span class='input-group-text' id='richness'>推荐菜</span>
+                <input type='text' class='form-control' name='recommend' value='<?php echo $restaurant->get_recommend() ?>'>
+            </div>
+        </div>
     </div>
     <?php if ($_GET['action'] == "add") {
         echo "<input type='hidden' name='action' value='add'>";

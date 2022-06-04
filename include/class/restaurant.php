@@ -7,6 +7,7 @@ class restaurant
     var int $richness;
     var array $category= array();
     var string $method;
+    var array $recommend = array();
 
 
     function __construct($id)
@@ -14,16 +15,22 @@ class restaurant
         global $conn;
         if (restaurant_exist($id)) {
             $this->id = $id;
-            $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM restaurant WHERE id = '{$id}';"));
+            $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM restaurant WHERE id = '$id';"));
             $this->name = $result['name'];
             $this->richness = $result['richness'];
-            $category = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '{$id}';");
+            $category = mysqli_query($conn, "SELECT category_id FROM restaurant_tagmap WHERE restaurant_id = '$id';");
             if (mysqli_num_rows($category) > 0) {
                 while ($row = mysqli_fetch_assoc($category)) {
                     $this->category[] = $row['category_id'];
                 }
             }
             $this->method = $result['method'];
+            $recommend = mysqli_query($conn,"SELECT recommend FROM recommend WHERE restaurant_id = '$id';");
+            if (mysqli_num_rows($recommend) > 0) {
+                while ($row = mysqli_fetch_assoc($recommend)) {
+                    $this->recommend[] = $row['recommend'];
+                }
+            }
         } else {
             $this->id = 0;
         }
@@ -80,6 +87,27 @@ class restaurant
             mysqli_query($conn, "DELETE FROM restaurant WHERE id = '{$this->id}';");
             mysqli_query($conn, "DELETE FROM restaurant_tagmap WHERE restaurant_id = '{$this->id}';");
             $this->id = 0;
+        }
+    }
+
+    function get_recommend(): string
+    {
+        if ($this->recommend == null){
+            return "没有推荐捏~";
+        }else{
+            return implode(",", $this->recommend);
+        }
+
+    }
+
+    function update_recommend($recommend)
+    {
+        global $conn;
+        mysqli_query($conn, "DELETE FROM recommend WHERE restaurant_id = '{$this->id}';");
+        if (stristr($recommend,",")){
+            foreach (explode(",",$recommend) as $rec) {
+                mysqli_query($conn, "INSERT INTO recommend (restaurant_id, recommend) VALUES ('{$this->id}', '{$rec}');");
+            }
         }
     }
 }
