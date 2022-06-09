@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
         <div class="row">
             <div class='btn-group mb-3'>
                 <span class='input-group-text' id='richness'>推荐菜</span>
-                <input type='text' class='form-control' name='recommend' value='<?php echo $restaurant->get_recommend() ?>'>
+                <input type='text' class='form-control' name='recommend' value='<?php if ($_GET['action'] == "edit") echo $restaurant->get_recommend() ?>'>
             </div>
         </div>
     </div>

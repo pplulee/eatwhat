@@ -12,10 +12,6 @@ MySQL - 8.0.12 : Database - eatwhat
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`eatwhat` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `eatwhat`;
-
 /*Table structure for table `category` */
 
 DROP TABLE IF EXISTS `category`;
@@ -73,7 +69,7 @@ CREATE TABLE `restaurant` (
   `priority` tinyint(4) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `richness` (`richness`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
 
 /*Data for the table `restaurant` */
 
@@ -168,7 +164,8 @@ insert  into `restaurant`(`id`,`name`,`richness`,`method`,`priority`) values
 (91,'Croyaki Tea',2,'both',0),
 (95,'ETCI MEHMET | Turkish Steak & Burger House',4,'eatin',0),
 (96,'Hello Oriental',3,'eatin',0),
-(97,'Shoryu拉面',3,'both',0);
+(97,'Shoryu拉面',3,'both',0),
+(98,'Gyoza Wang',2,'both',0);
 
 /*Table structure for table `restaurant_tagmap` */
 
@@ -361,7 +358,10 @@ insert  into `restaurant_tagmap`(`restaurant_id`,`category_id`) values
 (2,6),
 (2,8),
 (2,15),
-(2,16);
+(2,16),
+(98,1),
+(98,2),
+(98,4);
 
 /*Table structure for table `richness` */
 
