@@ -105,7 +105,8 @@ include("header.php");
                     in_array(18, (isset($_POST['category'])) ? $_POST['category'] : array())? $prompt = "喝": $prompt = "吃";
                     echo "<div class='alert alert-primary' role='alert' style='text-align: center'>今天{$prompt}<br><b>{$restaurant->name}</b></div>";
                     echo $restaurant->richness == 5 ? "<div class='alert alert-success' role='alert' style='text-align: center'><b>狠狠消费！</b></div>" : "";
-                    echo "<div class='alert alert-secondary' role='alert' style='text-align: center'>".$restaurant->get_recommend()."</div>";
+                    $recommend = $restaurant->get_recommend();
+                    echo strlen($recommend) != 0 ? "<div class='alert alert-secondary' role='alert' style='text-align: center'>".$recommend."</div>" : "";
                 }
             }
             ?>

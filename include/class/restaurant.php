@@ -93,7 +93,7 @@ class restaurant
     function get_recommend(): string
     {
         if ($this->recommend == null){
-            return "没有推荐菜品捏~";
+            return "";
         }else{
             return implode(",", $this->recommend);
         }
@@ -104,7 +104,7 @@ class restaurant
     {
         global $conn;
         mysqli_query($conn, "DELETE FROM recommend WHERE restaurant_id = '{$this->id}';");
-        if (stristr($recommend,",")){
+        if (strlen($recommend) != 0) {
             foreach (explode(",",$recommend) as $rec) {
                 mysqli_query($conn, "INSERT INTO recommend (restaurant_id, recommend) VALUES ('{$this->id}', '{$rec}');");
             }
