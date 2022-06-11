@@ -30,16 +30,16 @@ include("header.php");
                 <b>最大运行时间:</b> <?php echo ini_get('max_execution_time') ?>s
             </li>
             <li class="list-group-item">
-                <b>允许POST:</b> <?php echo ini_get('post_max_size'); ?>
+                <b>POST大小限制:</b> <?php echo ini_get('post_max_size'); ?>
             </li>
             <li class="list-group-item">
-                <b>允许文件上传:</b> <?php echo ini_get('upload_max_filesize'); ?>
+                <b>文件上传大小限制:</b> <?php echo ini_get('upload_max_filesize'); ?>
             </li>
             <li class="list-group-item">
-                <b>现有餐厅数量:</b> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT id FROM restaurant;")); ?>
+                <b>餐厅数量:</b> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT id FROM restaurant;")); ?>
             </li>
             <li class="list-group-item">
-                <b>现有分类数量:</b> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT id FROM category;")); ?>
+                <b>分类数量:</b> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT id FROM category;")); ?>
             </li>
         </ul>
     </div>
