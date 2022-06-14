@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
             $max_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(id) as max_id FROM restaurant"))['max_id'];
             $restaurant = new restaurant($max_id);
             $restaurant->update_category($_POST['category']);
+            $restaurant->update_recommend($_POST['recommend']);
             alert("添加成功");
             echo "<script>setTimeout(\"javascript:location.href='restaurant.php'\", 500);</script>";
             exit;
