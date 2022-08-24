@@ -7,15 +7,17 @@ from pagermaid.utils import obtain_message, alias_command
 
 
 @listener(outgoing=True, command=alias_command("eatwhat"),
-          description="roll一下今天吃什么\n价位：1-xxx 2-xxx 3-xxx 4-xxx 5-xxx", # 在此处修改为你的数据库richness对应内容
-          parameters="<价位(1-5)> <类型(eatin/takeaway/both)>") # 酌情修改提示信息
+          description="roll一下今天吃什么\n省钱：1 正常：2 消费：3 狠狠消费：4 皇朝会：5", parameters="<价位(1-5)> <类型(eatin/takeaway/both)>")
 async def eatwhat(context):
     await context.edit("正在获取中...")
-    if int(context.parameter[0])< 1 or int(context.parameter[0]) > 5:   # 在此处将1和5修改为你的数据库richness对应范围
-        await context.edit("价位范围为1-5！请重试")              # 酌情修改提示信息
+    if len(context.parameter) < 2:
+        await context.edit("格式有误，请重新输入！")
         return
-    if context.parameter[1] not in ["eatin", "takeaway", "both"]:          # 在此处修改为你的数据库category对应内容
-        await context.edit("类型只能是eatin/takeaway/both！请重试")          # 在此处修改为你的数据库category对应内容
+    if int(context.parameter[0])< 1 or int(context.parameter[0]) > 5:
+        await context.edit("价位范围为1-5！请重试")
+        return
+    if context.parameter[1] not in ["eatin", "takeaway", "both"]:
+        await context.edit("类型只能是eatin/takeaway/both！请重试")
         return
     try:
         price = context.parameter[0]
@@ -24,7 +26,7 @@ async def eatwhat(context):
     except ValueError:
         await context.edit("出错了呜呜呜 ~ 无效的参数。")
         return
-    req = get("https://example.com/api.php" + message)             # 在此处将https://example.com/api.php替换为你的部署地址+/api.php
+    req = get("https://eatwhat.tian-shen.cyou/api.php" + message)
     if req.status_code == 200:
         try:
             data = req.text
