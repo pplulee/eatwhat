@@ -1,7 +1,4 @@
-import json
-from json import JSONDecodeError
 from requests import get
-from pagermaid import version
 from pagermaid.listener import listener
 from pagermaid.utils import obtain_message, alias_command
 
@@ -26,7 +23,7 @@ async def eatwhat(context):
     except ValueError:
         await context.edit("出错了呜呜呜 ~ 无效的参数。")
         return
-    req = get("https://eatwhat.tian-shen.cyou/api.php" + message)
+    req = get("https://example.com/api.php" + message)   # 在这里填写你的API地址
     if req.status_code == 200:
         try:
             data = req.text
@@ -40,4 +37,4 @@ async def eatwhat(context):
         data = "今天吃：" + data + "！"
         await context.edit(data)
     else:
-        await context.edit("出错了呜呜呜 ~ 无法访问到 API 服务器 。")
+        await context.edit(f"出错了！无法访问到API服务器，状态码：{req.status_code}")
